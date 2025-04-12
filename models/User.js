@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
+
+
 const profileSchema = new mongoose.Schema({
-  name: String,
-  showCount: {
-    type: Number,
-    default: 0
-  }
+  name: { type: String, required: true },
+  profilePhoto: { type: Number, min: 1, max: 5, required: true }
 });
+
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },

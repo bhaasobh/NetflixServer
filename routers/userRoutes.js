@@ -1,0 +1,15 @@
+const express = require('express');
+const router = express.Router();
+const {
+  addProfile,
+  deleteProfile,
+  getProfiles
+} = require('../controllers/userController');
+
+// If you use auth: const verifyToken = require('../middleware/userAuth');
+
+router.post('/profiles/:userId', addProfile);
+router.delete('/profiles/:userId/:profileId', deleteProfile);
+router.get('/profiles/:userId', getProfiles);
+
+module.exports = router;

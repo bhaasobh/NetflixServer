@@ -2,8 +2,9 @@ require('dotenv').config();
 const os = require('os');
 const express = require('express');
 const cors = require('cors');
-const authRoutes = require('./routers/auth');
-const UserRoutes = require('./routers/user');
+const authRoutes = require('./middlewares/auth');
+const UserRoutes = require('./routers/userRoutes');
+const AvatarRoutes = require('./routers/AvatarRoutes');
 require('./db_connection');
 
 const app = express(); // ✅ move this above any use of `app`
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', UserRoutes);
+app.use('/api/avatar', AvatarRoutes);
 
 // Set your desired IP and port
 const PORT = process.env.PORT || 3001;
