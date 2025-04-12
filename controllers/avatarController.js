@@ -10,7 +10,7 @@ const getAvatarByNumber = async (req, res) => {
     if (!avatar) {
       return res.status(404).json({ message: 'Avatar not found' });
     }
-
+    
     res.status(200).json(avatar);
   } catch (err) {
     console.error('Error fetching avatar by number:', err);

@@ -5,4 +5,5 @@ const { addAvatar, getAvatarByNumber } = require('../controllers/avatarControlle
 router.post('/', addAvatar);
 router.get('/:number', getAvatarByNumber);
 
+
 module.exports = router;
