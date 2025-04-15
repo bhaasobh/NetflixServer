@@ -67,6 +67,23 @@ const getProfiles = async (req, res) => {
   }
 };
 
+const getProfilebyid = async (req, res) => {
+  try {
+    const { profileId } = req.params;
+
+    // Find user who has this profile
+    const user = await User.findOne({ 'profiles._id': profileId });
+
+    if (!user) return res.status(404).json({ message: 'Profile not found' });
+
+    const profile = user.profiles.id(profileId); // Mongoose subdoc access
+    res.json(profile);
+  } catch (err) {
+    console.error('Error fetching profile by ID:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 const editProfile = async (req, res) => {
   try {
     const { userId, profileId } = req.params;
@@ -96,5 +113,6 @@ module.exports = {
   addProfile,
   deleteProfile,
   getProfiles,
-  editProfile
+  editProfile,
+  getProfilebyid
 };
