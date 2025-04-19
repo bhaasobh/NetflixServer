@@ -5,7 +5,6 @@ const Avatar = require('../models/avatar');
 const getAvatarByNumber = async (req, res) => {
   try {
     const { number } = req.params;
-    console.log(number);
     const avatar = await Avatar.findOne({ number: number});
     if (!avatar) {
       return res.status(404).json({ message: 'Avatar not found' });

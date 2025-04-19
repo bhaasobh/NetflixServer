@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
 
 
-
+const mediaSchema = new mongoose.Schema({
+  id: Number,
+  title: String,
+  poster_path: String,
+  media_type: String,
+  overview: String,
+});
 const profileSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  profilePhoto: { type: Number, min: 1, max: 5, required: true }
+  profilePhoto: { type: Number, min: 1, max: 5, required: true },
+  myList: [mediaSchema]
 });
 
 

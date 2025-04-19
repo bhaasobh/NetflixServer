@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-// ➕ Create a new profile
+
 const addProfile = async (req, res) => {
   try {
     const { name, profilePhoto, profileNumber } = req.body;
@@ -30,7 +30,7 @@ const addProfile = async (req, res) => {
   }
 };
 
-// ❌ Delete profile
+
 const deleteProfile = async (req, res) => {
   try {
     const { userId, profileId } = req.params;
@@ -54,7 +54,7 @@ const deleteProfile = async (req, res) => {
   }
 };
 
-// 📥 Get all profiles
+
 const getProfiles = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);

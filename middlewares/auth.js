@@ -49,21 +49,21 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, role: user.role },
       process.env.SECRET_KEY,
-      { expiresIn: '1h' } // טוקן תקף לשעה
+      { expiresIn: '1h' } 
     );
 
-    // שמירת ה-token ב-cookie אם המשתמש ביקש "Remember Me"
+   
     if (rememberMe) {
       res.cookie('token', token, {
         httpOnly: true,
-        maxAge: 60 * 60 * 1000, // שעה אחת
-        sameSite: 'Strict', // לפי הצורך
-        secure: process.env.NODE_ENV === 'production' // רק HTTPS בפרודקשן
+        maxAge: 60 * 60 * 1000, 
+        sameSite: 'Strict', 
+        secure: process.env.NODE_ENV === 'production' 
         
       });
     }
 
-    // מחזירים גם ב-JSON אם הלקוח שומר אותו ב-Context/LocalStorage
+  
     res.status(200).json({
       message: 'Login successful',
       token,

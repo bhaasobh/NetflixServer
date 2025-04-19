@@ -5,19 +5,26 @@ const cors = require('cors');
 const authRoutes = require('./middlewares/auth');
 const UserRoutes = require('./routers/userRoutes');
 const AvatarRoutes = require('./routers/AvatarRoutes');
+const reviewRoutes = require('./routers/reviewRoutes');
+const ProfileList = require('./routers/profileListRoutes');
+
 require('./db_connection');
 
-const app = express(); // ✅ move this above any use of `app`
+const app = express(); 
 
-app.use(cors()); // ✅ now safe
+app.use(cors()); 
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', UserRoutes);
 app.use('/api/avatar', AvatarRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/profile-list',ProfileList);
+
 
 // Set your desired IP and port
 const PORT = process.env.PORT || 3001;
+
 function getLocalIPAddress() {
   const interfaces = os.networkInterfaces();
   for (const name of Object.keys(interfaces)) {
@@ -32,7 +39,6 @@ function getLocalIPAddress() {
 
 
 const HOST = getLocalIPAddress();
-console.log(HOST);
 app.listen(PORT,() => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
