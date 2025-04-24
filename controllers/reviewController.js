@@ -20,6 +20,23 @@ exports.createReview = async (req, res) => {
   }
 };
 
+
+// GET last 10 reviewed media items by a user
+exports.getRecentReviews = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const reviews = await Review.find({ userId })
+      .sort({ createdAt: -1 })
+      .limit(10);
+
+    res.status(200).json(reviews);
+  } catch (err) {
+    console.error('Failed to fetch user reviews:', err);
+    res.status(500).json({ message: 'Error retrieving reviews', error: err.message });
+  }
+};
+
 exports.getPublicReviews = async (req, res) => {
   try {
     const { mediaId } = req.params;

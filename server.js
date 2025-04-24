@@ -7,6 +7,7 @@ const UserRoutes = require('./routers/userRoutes');
 const AvatarRoutes = require('./routers/AvatarRoutes');
 const reviewRoutes = require('./routers/reviewRoutes');
 const ProfileList = require('./routers/profileListRoutes');
+const mediaRoutes = require('./routers/mediaRoutes');
 
 require('./db_connection');
 
@@ -20,6 +21,7 @@ app.use('/api/user', UserRoutes);
 app.use('/api/avatar', AvatarRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/profile-list',ProfileList);
+app.use('/api', mediaRoutes);
 
 
 // Set your desired IP and port
